@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\coverlet.testsubject\coverlet.testsubject.csproj" />
+    <ProjectReference Include="..\coverlet.secondtestsubject\coverlet.secondtestsubject.csproj" />
   </ItemGroup>
 
   <Import Project="$(MSBuildThisFileDirectory)\..\..\build\$(Configuration)\coverlet.msbuild.targets" />

@@ -1,4 +1,5 @@
 ﻿using coverlet.testsubject;
+using coverlet.secondtestsubject;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Xunit;
@@ -14,17 +15,22 @@ namespace coverlet.core.performancetest
     /// </summary>
     public class PerformanceTest
     {
-        [Theory(Skip = "Only enabled when explicitly testing performance.")]
+        [Theory/*(Skip = "Only enabled when explicitly testing performance.")*/]
         [InlineData(150)]
         public void TestPerformance(int iterations)
         {
             var big = new BigClass();
+            var snd = new SecondBigClass();
 
             List<Task> tasks = new List<Task>();
 
             for (var i = 0; i < iterations; i++)
             {
-                tasks.Add(Task.Run(() => big.Do(i)));
+                tasks.Add(Task.Run(() =>
+                {
+                    big.Do(i);
+                    snd.Do(i);
+                }));
             }
 
             Task.WaitAll(tasks.ToArray());

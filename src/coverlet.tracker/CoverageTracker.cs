@@ -40,6 +40,8 @@ namespace Coverlet.Tracker
                 {
                     fileEvents = new Dictionary<string, int>();
                     t_events.Add(file, fileEvents);
+                    if (t_events.Count > 1)
+                        throw new InvalidOperationException("!!!!> Thread receiving different modules <!!!!");
                 }
 
                 if (!fileEvents.TryGetValue(evt, out var count))
